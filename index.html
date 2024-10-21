@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyoju Studio - Oyun Hileleri</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 64px;
+            margin: 0;
+            padding: 20px;
+            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        main {
+            text-align: center;
+            z-index: 1;
+            overflow-y: auto;
+            height: 60vh;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            background-color: rgba(50, 50, 50, 0.8);
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+            font-size: 22px;
+        }
+
+        .label {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 0 5px #ffcc00;
+        }
+
+        .developer {
+            font-size: 22px;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            z-index: 1;
+        }
+
+        footer p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        #rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .youtube-link {
+            margin-top: 20px;
+            text-decoration: underline;
+            color: #ffcc00;
+            font-size: 22px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="rain"></canvas>
+    
+    <header>
+        <h1>Kyoju Studio</h1>
+        <p>Oyun hileleri satın almak için Discord sunucumuza katılın!</p>
+        <p><strong>Discord Sunucusu:</strong> <a href="https://discord.gg/4AMFHcVdwb" target="_blank">Kyoju Studio Discord</a></p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Satışta Olan Hileler</h2>
+            <ul>
+                <li>
+                    <h3>Counter Strike 2 Hilesi</h3>
+                    <div class="label">Undetected</div>
+                    <p>Fiyatlar:</p>
+                    <ul>
+                        <li>1 Gün: <strong>20 TL</strong></li>
+                        <li>1 Hafta: <strong>120 TL</strong></li>
+                        <li>1 Ay: <strong>340 TL</strong></li>
+                        <li>1 Yıl: <strong>890 TL</strong></li>
+                        <li>Lifetime: <strong>2000 TL</strong></li>
+                    </ul>
+                    <p>Özellikler:</p>
+                    <ul>
+                        <li>Aimbot</li>
+                        <li>Triggerbot</li>
+                        <li>ESP</li>
+                        <li>Bunnyhop</li>
+                        <li>FOV Changer</li>
+                        <li>Misc</li>
+                    </ul>
+                    <p>Bu hileyi almak için yukarıdaki Discord sunucumuza katılın ve özel anahtarınızı alın.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="support">
+            <h2>Destek</h2>
+            <p>Herhangi bir sorunuz varsa, Discord üzerinden bizimle iletişime geçebilirsiniz.</p>
+        </section>
+
+        <section id="developers">
+            <h2>Geliştiriciler</h2>
+            <p class="developer">NeoXa7</p>
+            <p class="developer">Yardımcı: Kyoju</p>
+        </section>
+
+        <a class="youtube-link" href="https://www.youtube.com/@kyojustudio/videos" target="_blank">YouTube Kanalımıza Gidin</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Kyoju Studio. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('rain');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let drops = [];
+        const numDrops = 500;
+
+        for (let i = 0; i < numDrops; i++) {
+            drops.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                length: Math.random() * 20 + 10,
+                speed: Math.random() * 5 + 2
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(174, 194, 224, 0.5)';
+            ctx.strokeStyle = 'rgba(174, 194, 224, 0.5)';
+            ctx.lineWidth = 2;
+
+            for (let drop of drops) {
+                ctx.beginPath();
+                ctx.moveTo(drop.x, drop.y);
+                ctx.lineTo(drop.x, drop.y + drop.length);
+                ctx.stroke();
+                drop.y += drop.speed;
+
+                if (drop.y > canvas.height) {
+                    drop.y = -drop.length;
+                    drop.x = Math.random() * canvas.width;
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
+</html>
