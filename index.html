@@ -3,253 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyoju Studio - Oyun Hileleri</title>
+    <title>Cyberlife Yazılım</title>
     <style>
+        /* Genel sayfa stilleri */
         body {
-            margin: 0;
-            overflow: hidden;
-            background-color: black;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 64px;
-            margin: 0;
-            padding: 20px;
-            text-shadow: 0 0 20px #ffcc00, 0 0 30px #ffcc00;
-        }
-
-        p {
-            font-size: 20px;
-            margin: 5px 0;
-        }
-
-        a {
-            color: #ffcc00;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a;
             color: #ffffff;
-        }
-
-        main {
-            text-align: center;
-            z-index: 1;
-            overflow-y: auto;
-            height: 60vh;
-            width: 100%;
-            padding: 0 20px;
-        }
-
-        section {
-            margin: 20px 0;
-            padding: 20px;
-            border: 2px solid #ffcc00;
-            border-radius: 10px;
-            background-color: rgba(50, 50, 50, 0.8);
-        }
-
-        h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #ffcc00;
-        }
-
-        ul {
-            list-style-type: none;
+            margin: 0;
             padding: 0;
         }
 
-        li {
-            margin: 15px 0;
-            font-size: 22px;
-        }
-
-        .label {
-            display: inline-block;
-            background-color: #ffcc00;
-            color: black;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            margin: 10px 0;
-            text-shadow: 0 0 5px #ffcc00;
-        }
-
-        .developer {
-            font-size: 22px;
-            margin-top: 20px;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            z-index: 1;
-        }
-
-        footer p {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-
-        #rain {
-            position: absolute;
+        /* Parıltı efekti */
+        .sparkles {
+            position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
+            width: 100px;
             height: 100%;
+            overflow: hidden;
             pointer-events: none;
         }
 
-        .youtube-link {
+        .sparkles.left {
+            left: 0;
+        }
+
+        .sparkles.right {
+            right: 0;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+                top: 100vh;
+            }
+        }
+
+        /* Başlık ve içerik */
+        header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin: 20px auto;
+        }
+
+        header h1 {
+            color: #4dabf7;
+            font-size: 2.5em;
+            margin: 10px 0 5px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #bfbfbf;
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        /* Ana içerik */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .game {
+            background-color: #2e2e2e;
+            width: 100%;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #4dabf7;
+        }
+
+        .game:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 139, 247, 0.3);
+        }
+
+        .game h2 {
+            color: #4dabf7;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .game p {
+            font-size: 1em;
+            color: #d9d9d9;
+        }
+
+        .download-links {
+            margin-top: 10px;
+        }
+
+        .download-links a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #007bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .download-links a:hover {
+            background-color: #0066cc;
+        }
+
+        /* Alt kısım */
+        footer {
+            background-color: #1a1a1a;
+            padding: 15px;
+            text-align: center;
+            color: #bfbfbf;
+            font-size: 0.9em;
             margin-top: 20px;
-            text-decoration: underline;
-            color: #ffcc00;
-            font-size: 22px;
-            z-index: 1;
+        }
+
+        .footer-links a {
+            color: #4dabf7;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
         }
     </style>
 </head>
 <body>
-    <canvas id="rain"></canvas>
-    
+    <!-- Parıltı efektini oluşturan divler -->
+    <div class="sparkles left"></div>
+    <div class="sparkles right"></div>
+
     <header>
-        <h1>Kyoju Studio</h1>
-        <p>Oyun hileleri satın almak için Discord sunucumuza katılın!</p>
-        <p><strong>Discord Sunucusu:</strong> <a href="https://discord.gg/4AMFHcVdwb" target="_blank">Kyoju Studio Discord</a></p>
+        <h1>Cyberlife Yazılım</h1>
+        <p>En popüler oyunlar için en iyi yazılımları keşfedin!</p>
     </header>
 
-    <main>
-        <section>
-            <h2>Satışta Olan Hileler</h2>
-            <ul>
-                <li>
-                    <h3>Counter Strike 2 Hilesi</h3>
-                    <div class="label">Undetected</div>
-                    <p>Fiyatlar:</p>
-                    <ul>
-                        <li>1 Gün: <strong>20 TL</strong></li>
-                        <li>1 Hafta: <strong>120 TL</strong></li>
-                        <li>1 Ay: <strong>340 TL</strong></li>
-                        <li>1 Yıl: <strong>890 TL</strong></li>
-                        <li>Lifetime: <strong>2000 TL</strong></li>
-                    </ul>
-                    <p>Özellikler:</p>
-                    <ul>
-                        <li>Aimbot</li>
-                        <li>Triggerbot</li>
-                        <li>ESP</li>
-                        <li>Bunnyhop</li>
-                        <li>FOV Changer</li>
-                        <li>Misc</li>
-                    </ul>
-                    <p>Bu hileyi almak için yukarıdaki Discord sunucumuza katılın ve özel anahtarınızı alın.</p>
-                </li>
+    <div class="container">
+        <!-- Counter Strike 2 -->
+        <div class="game">
+            <h2>Counter Strike 2</h2>
+            <p>Counter Strike 2 için güncel hileyi indirin ve oyunda avantaj kazanın.</p>
+            <div class="download-links">
+                <a href="https://cdn.discordapp.com/attachments/1302364459641212944/1302366117897044099/CyberLife.zip?ex=6727da77&is=672688f7&hm=f409732d2b7e90c7d252bda9e560a05325d08cbe7b8f3bb17aef8eb162c916cd&" target="_blank">Hileyi İndir</a>
+            </div>
+        </div>
 
-                <!-- Yeni Eklenen Hile -->
-                <li>
-                    <h3>Counter Strike 2 Skinchanger</h3>
-                    <div class="label">Undetected</div>
-                    <p>Fiyatlar:</p>
-                    <ul>
-                        <li>1 Gün: <strong>20 TL</strong></li>
-                        <li>1 Hafta: <strong>120 TL</strong></li>
-                        <li>1 Ay: <strong>340 TL</strong></li>
-                        <li>1 Yıl: <strong>890 TL</strong></li>
-                        <li>Lifetime: <strong>2000 TL</strong></li>
-                    </ul>
-                    <p>Özellikler:</p>
-                    <ul>
-                        <li>Skinchanger</li>
-                        <li>Seçkin Yükseltici</li>
-                        <li>FOV Changer</li>
-                        <li>Misc</li>
-                        <li>Kutu Açma</li>
-                        <li>Vac Korumalı</li>
-                        <li>Anında Global Olma (Bansız)</li>
-                    </ul>
-                    <p>Bu hileyi almak için yukarıdaki Discord sunucumuza katılın ve özel anahtarınızı alın.</p>
-                </li>
-            </ul>
-        </section>
+        <!-- Valorant -->
+        <div class="game">
+            <h2>Valorant</h2>
+            <p>Valorant için iki farklı hile mevcuttur. SkinChanger ve Internal hilelerini aşağıdan indirebilirsiniz.</p>
+            <div class="download-links">
+                <a href="https://github.com/assasinsbat/ready/raw/main/ST_SkinChanger_Free.zip" target="_blank">SkinChanger İndir</a>
+                <a href="https://github.com/assasinsbat/ready/raw/main/ST_Internal_Free.zip" target="_blank">Internal İndir</a>
+            </div>
+        </div>
 
-        <section id="support">
-            <h2>Destek</h2>
-            <p>Herhangi bir sorunuz varsa, Discord üzerinden bizimle iletişime geçebilirsiniz.</p>
-        </section>
+        <!-- FiveM -->
+        <div class="game">
+            <h2>FiveM</h2>
+            <p>FiveM için en güncel hileyi kullanarak oyun içinde avantaj elde edin.</p>
+            <div class="download-links">
+                <a href="https://www.artmoney.ru/e_download_se.htm" target="_blank">Hileyi İndir</a>
+            </div>
+        </div>
 
-        <section id="developers">
-            <h2>Geliştiriciler</h2>
-            <p class="developer">NeoXa7</p>
-            <p class="developer">Yardımcı: Kyoju</p>
-        </section>
+        <!-- MTA (Multi Theft Auto) -->
+        <div class="game">
+            <h2>MTA (Multi Theft Auto)</h2>
+            <p>MTA için en iyi hileleri buradan indirebilirsiniz.</p>
+            <div class="download-links">
+                <a href="https://mega.nz/file/gQIW2C4Z#Iohm-E9UT5Z8GF5y9ZfGh6AUMywMKSLd1RdLh2iZjVM" target="_blank">Hileyi İndir</a>
+            </div>
+        </div>
+    </div>
 
-        <a class="youtube-link" href="https://www.youtube.com/@kyojustudio/videos" target="_blank">YouTube Kanalımıza Gidin</a>
-    </main>
-
+    <!-- Alt kısım -->
     <footer>
-        <p>&copy; 2024 Kyoju Studio. Tüm hakları saklıdır.</p>
+        <p>© Cyberlife Yazılım - Tüm hakları saklıdır.</p>
+        <div class="footer-links">
+            <a href="https://www.youtube.com/@cyberlife_yazilim" target="_blank">YouTube</a> |
+            <a href="https://discord.gg/mSHyGr5qA6" target="_blank">Discord</a>
+        </div>
     </footer>
 
     <script>
-        const canvas = document.getElementById('rain');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let drops = [];
-        const numDrops = 500;
-
-        for (let i = 0; i < numDrops; i++) {
-            drops.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                length: Math.random() * 20 + 10,
-                speed: Math.random() * 5 + 2
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(174, 194, 224, 0.5)';
-            ctx.strokeStyle = 'rgba(174, 194, 224, 0.5)';
-            ctx.lineWidth = 2;
-
-            for (let drop of drops) {
-                ctx.beginPath();
-                ctx.moveTo(drop.x, drop.y);
-                ctx.lineTo(drop.x, drop.y + drop.length);
-                ctx.stroke();
-                drop.y += drop.speed;
-
-                if (drop.y > canvas.height) {
-                    drop.y = -drop.length;
-                    drop.x = Math.random() * canvas.width;
-                }
+        // Parıltı efektini oluşturma
+        function createSparkles() {
+            const leftSparkles = document.querySelector('.sparkles.left');
+            const rightSparkles = document.querySelector('.sparkles.right');
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = `${Math.random() * 100}px`;
+                sparkle.style.top = `${Math.random() * 100}vh`;
+                sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                sparkle.style.animationDelay = `${Math.random() * 5}s`;
+                (i % 2 === 0 ? leftSparkles : rightSparkles).appendChild(sparkle);
             }
-
-            requestAnimationFrame(draw);
         }
 
-        draw();
+        createSparkles();
     </script>
 </body>
 </html>
